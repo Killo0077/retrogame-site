@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Retro Gaming Club &#128125;</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="imagen/favicon.jpg" type="image/x-icon">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .topnav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .active {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+       
+
+        .dropdown {
+            float: left;
+            overflow: hidden;
+            border-radius: 10px;
+            
+        }
+
+        .dropdown .dropbtn {
+            font-size: 17px;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #01fa22;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 10px;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .topnav a:hover,
+        .dropdown:hover .dropbtn {
+            background-color: #ff0080;
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ff0080;
+            color: #ffff00;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .container {
+            position: relative;
+            width: auto;
+            padding: 10px;
+        }
+
+        .image {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: 0.5s ease;
+        }
+
+        .container:hover .image {
+            content: url('imagen/kirby2.jpg');
+            width: 100%;
+            height: auto;
+        }
+
+        .slidecontainer {
+            width: 100%;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 25px;
+            background: greenyellow;
+            outline: none;
+            transition: opacity .2s;
+            border-radius: 10px;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #ff0080;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: #ff0080;
+            cursor: pointer;
+        }
+
+    </style>
+
+    <script>
+        function updateRating(value) {
+            const ratingValue = document.getElementById("ratingValue");
+            const ratingFeedback = document.getElementById("ratingFeedback");
+
+            ratingValue.textContent = value;
+
+            if (value <= 3) {
+                ratingFeedback.textContent = "Can not be that bad...Please grade it again 😢";
+                ratingFeedback.style.color = "red";
+            } else if (value <= 6) {
+                ratingFeedback.textContent = "Thanks for your feedback! We’ll keep improving! 😊";
+                ratingFeedback.style.color = "orange";
+            } else if (value <= 8) {
+                ratingFeedback.textContent = "Great! We’re happy you enjoyed your experience. 😄";
+                ratingFeedback.style.color = "green";
+            } else {
+                ratingFeedback.textContent = "Amazing! Thank you for loving our website! 🎉";
+                ratingFeedback.style.color = "blue";
+            }
+        }
+
+        function displayCharacter() {
+            const input = document.getElementById("characterInput").value.trim();
+            const display = document.getElementById("characterDisplay");
+
+            if (!input) {
+                alert("Please enter a character.");
+                return;
+            }
+
+            display.textContent = `Your favorite character is: ${input}`;
+            display.style.display = "block";
+            display.style.color = "blue";
+            display.style.fontSize = "20px";
+            display.style.fontWeight = "bold";
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const startGameButton = document.getElementById("start-game");
+            const gameContainer = document.getElementById("game-container");
+
+            const characters = [
+                {
+                    name: "Meta Knight",
+                    alias: "Borb",
+                    weapon: "Galaxia",
+                    actor: "Eric Stuart ",
+                    description: "An enigmatic yet honorable swordsman who follows a chivalric code",
+                    image: "imagen/Meta Knight.jpg"
+                },
+                {
+                    name: "King Dedede",
+                    alias: "King of Dream Land",
+                    weapon: "King of Dream Land",
+                    actor: "Ted Edwid",
+                    description: "A portly, blue, penguin-like creature who wields a hammer and proclaims himself king of Dream Land. ",
+                    image: "imagen/King Dedede.jpg"
+                },
+                {
+                    name: "Galacta Knight",
+                    alias: "Aeon Hero",
+                    weapon: "Pink lance",
+                    actor: "Shinya Kumazaki",
+                    description: "The strongest warrior in the galaxy from Another Dimension.",
+                    image: "imagen/Galacta Knight.jpg"
+                },
+                {
+                    name: "Kirby",
+                    alias: "Popopo",
+                    weapon: "The Star Rod",
+                    actor: "Makiko Ohmoto",
+                    description: "A pink ball with red shoes and nubs for arms.",
+                    image: "imagen/kirbyfight.jpg"
+
+                }
+                
+
+            ];
+
+            startGameButton.addEventListener("click", () => {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                const selectedCharacter = characters[randomIndex];
+
+                const characterDetails = `
+                    <h2>${selectedCharacter.name}</h2>
+                    <p><strong>Alias:</strong> ${selectedCharacter.alias}</p>
+                    <p><strong>Weapon:</strong> ${selectedCharacter.weapon}</p>
+                    <p><strong>Actor:</strong> ${selectedCharacter.actor}</p>
+                    <p>${selectedCharacter.description}</p>
+                    <img src="${selectedCharacter.image}" alt="${selectedCharacter.name}" style="width: 200px; height: auto;">
+                `;
+
+                gameContainer.innerHTML = characterDetails;
+            });
+        });
+
+    </script>
+
+</head>
+
+<body>
+    <div id="top">
+        <!-- Navigation Bar -->
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="join.html">Join</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About</a></li>
+                <div class="dropdown">
+                    <button class="dropbtn"><h3>More Info</h3>
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="https://www.youtube.com/watch?v=DGEb7bB6zZY">Game Play</a>
+                        <a href="index.html">Home</a>
+                        
+                    </div>
+                </div>
+
+            </ul>
+        </nav>
+    </div>
+
+    <main>
+        <div class="two-columns">
+            <div class="column">
+                <h2>Classic Games</h2>
+                <!--Imagen change hover-->
+                <div class="container">
+                    <img src="imagen/kirby1.jpg" alt="Avatar" class="image">
+
+
+                </div>
+
+                <div class="slidecontainer">
+                    <p>Rate our website:</p>
+                    <input type="range" min="1" max="10" value="5" class="slider" id="ratingSlider"
+                        oninput="updateRating(this.value)">
+                    <p>Your Rating: <span id="ratingValue">5</span></p>
+                    <p id="ratingFeedback"></p>
+                </div>
+
+
+
+            </div>
+            <!--Column 2-->
+
+            <div class="column">
+                <h2>Who is your favorite Kirby's character?</h2>
+                <div class="character-container">
+                    <p>Enter your favorite character:</p>
+                    <input type="text" id="characterInput" placeholder="Type your favorite character">
+                    <button onclick="displayCharacter()">Submit</button>
+                    <p id="characterDisplay" style="display: none;"></p>
+
+                </div><p>
+
+                </p>
+
+                <div id="game-container">
+                    <h2>Play the Game</h2>
+                    <p>Press the button below to view a brief biography of a member of the Kirby Gang!</p>
+                    <button id="start-game">Kirby's characters</button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2024 Retro Gaming Club. Bringing the classics back to life!</p>
+    </footer>
+</body>
+
+</html>
